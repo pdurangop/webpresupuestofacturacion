@@ -1,0 +1,65 @@
+[
+    { "nombre": "Gastos de Personal",
+      "unidades": 30,
+      "valorUnitario": 5,
+      "moneda": "USD",
+      "total": 150,
+      "unidadesDisponibles" : 10
+    },
+    {
+        "nombre": "Licencia office Basica",
+        "unidades": 10,
+        "valorUnitario": 5,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 10
+      },
+	  {
+        "nombre": "Licencia office Standard",
+        "unidades": 10,
+        "valorUnitario": 5,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 10
+      },
+	  {
+        "nombre": "Licencia office exchange online (plan 1)",
+        "unidades": 1,
+        "valorUnitario": 1,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 10
+      },
+	  {
+        "nombre": "Licencia office exchange online (plan 2)",
+        "unidades": 10,
+        "valorUnitario": 5,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 10
+      },
+	  {
+        "nombre": "Licencia ",
+        "unidades": 10,
+        "valorUnitario": 5,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 10
+      },
+	  {
+        "nombre": "antivirus ",
+        "unidades": 10,
+        "valorUnitario": 5,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 10
+      },
+    {
+        "nombre": "Licencias Power BI",
+        "unidades": 5,
+        "valorUnitario": 11,
+        "moneda": "USD",
+        "total": 150,
+        "unidadesDisponibles" : 3
+      }
+]

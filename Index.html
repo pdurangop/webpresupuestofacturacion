@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Cargar Documento Soporte</title>
+</head>
+<body>
+  <div style="margin-left: 20px; 
+              margin-right: 20px;
+              margin-top: 20px;
+              margin-bottom: 20px;">
+    <header>
+        <div class="logo">
+            <img src="C:\Users\admin\OneDrive - CI ESLOP SAS (1)\Documents 1\Pagina facturacion\LOGO-150X150.png" alt="Logo ESLOP">
+        </div>
+        <div>
+          <h1>Sistema de Facturación</h1>
+        </div>        
+    </header>
+    <div>
+      <section class="bienvenido">
+        <h2>Bienvenido</h2>        
+      </section>
+    </div>
+    <div>
+      <h2>Cargar Documento Soporte</h2>
+	  <p>Por favor seleccione el documento soporte o factura para el gasto.</p>
+    </div>
+    <div>
+      <form action="../../form-result.php" method="post" enctype="multipart/form-data" target="_blank">
+
+        <p>      
+          Seleccione el archivo de la factura:      
+          <input type="file" name="archivosubido">      
+               
+        </p>      
+      </form>
+    </div>  
+    <div id="total_factura">
+      <p>Por favor Ingrese el total del pago.</p>  
+      <input type="number" placeholder="Valor total factura" />
+    </div>
+    <div>
+      <label for="documento">Seleccione el o los Gastos al cual pertenece la factura:</label>
+    </div>
+	  
+    <div>
+      <table id="tablaDatos" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Selección</th>
+            <th scope="col">Gasto</th>
+            <th scope="col">Unidades</th>
+            <th scope="col">Valor Unitario</th>
+            <th scope="col">Moneda</th>
+            <th scope="col">Total</th>
+            <th scope="col">Unidades Disponibles</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí las filas de la tabla dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <input id="btn_Siguiente" type="submit" value="Siguiente"> 
+    </div>
+    <div id="contenedor-nueva-tabla" style="display: none;">
+      <table id="gastosSeleccionados" class="table">
+        <thead class="thead-dark">
+          <tr>            
+            <th scope="col">Gasto</th>
+            <th scope="col">Unidades</th>
+            <th scope="col">Valor Unitario</th>
+            <th scope="col">Moneda</th>
+            <th scope="col">Total</th>
+            <th scope="col">Unidades Disponibles</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Aquí las filas de la tabla dinámicamente -->
+        </tbody>
+      </table>
+    </div>
+    <script src="script.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </div>
+  </body>
+</html>
