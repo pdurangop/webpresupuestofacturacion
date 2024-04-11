@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preuspuesto y facturacion</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts - Titillium Web y Nunito Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../estilos.css">
+    
+</head>
+<body>
+    <div class="container mt-3">
+        <header class="green-header d-flex align-items-center">
+                <div class="col">
+                    <img src="../logo-superior.png" alt="Logo" style="max-width: 200px;">
+                </div>
+                <div class="col">
+                    <h1 id="Encabezado">Facturacion VS Presupuesto</h1>
+                </div>
+            
+        </header>
+    </div>
+    <div class="container mt-5">
+        <h2>Bienvenido</h2>
+            <h2>Cargar Documento Soporte</h2>
+            <p>Por favor seleccione el documento soporte o factura para el gasto.</p>
+        <input type="file" id="fileInput" class="form-control-file">
+        <button id="btnEnviarArchivo" class="btn btn-primary mt-2">Enviar Archivo</button>
+        <br><br>
+        <div class="container d-flex align-items-center">
+            <p>Por favor Ingrese el total del pago: </p>
+            <input id="ValorTotal" type="number" placeholder="Valor total factura" />
+          </div>
+        <div id="DivTablaElementos">
+            <h2>Tabla de Gastos</h2>
+            <p>Por favor seleccione los elementos al cual pertenece el gasto.</p>
+            <table id="TablaElementos" class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Seleccionar</th>
+                        <th>Nombre</th>
+                        <th>Solicitado / Disponibles</th>
+                        <th>Valor Unitario</th>
+                        <th>Total</th>
+                        <!-- <th>Unidades Disponibles</th> -->               
+                    </tr>
+                </thead>
+                <tbody id="elementosTabla">
+                    <!-- Aquí se insertarán los elementos del JSON -->
+                </tbody>
+            </table>
+            <button id="btnCrearTabla" class="btn btn-primary">Generar Tabla con elementos seleccionados</button>
+        </div>
+        
+            <h2 class="mt-5">Tabla de Elementos Seleccionados</h2>
+            <p>Confirmar la cantidad y valor unitario para elemento seleccionado.</p>
+            <table id="tablaSeleccionados" class="table" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Solicitado / Unidades Disponibles</th>
+                        <th>Valor Unitario</th>
+                        <th>Total</th>
+                        <!-- <th>Unidades Disponibles</th>-->
+                    </tr>
+                </thead>
+                <tbody id="elementosSeleccionados">
+                    <!-- Aquí se insertarán los elementos seleccionados EN la NUEVA TABLA -->
+                </tbody>
+            </table>
+        
+        <table id="tablaTotales" class="table" style="display:none;">
+            <thead>
+                <tr>
+                    <th>Total</th>
+                    <!-- <th>&nbsp</th>
+                    <th>&nbsp</th>
+                    <th>&nbsp</th> -->
+                    <th><input type="text" id="SumaTotalSolicitado" readonly></th>
+                </tr>
+                <tr>
+                    <td id="ValoresDistintos" style="display: none">Por favor verificar los valores ingresados porque el total no coindicde con el valor de la factura</td>
+                </tr>
+            </thead>
+            
+        </table>
+        <button id="btnAtras" style="display:none">Atras</button>
+        <button id="btnAceptar" style="display:none">Aceptar</button>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        // JSON de ejemplo
+        var data = [
+            {"id":1,"nombre":"Gastos de Personal","unidades":30,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":2,"nombre":"Licencia office Basica","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":3,"nombre":"Licencia office Standard","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":4,"nombre":"Licencia office exchange online (plan 1)","unidades":1,"valorUnitario":1,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":5,"nombre":"Licencia office exchange online (plan 2)","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":6,"nombre":"Licencia","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":7,"nombre":"antivirus","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":8,"nombre":"Licencias Power BI","unidades":5,"valorUnitario":11,"moneda":"USD","total":150,"unidadesDisponibles":3}
+        ];
+
+        // Función para cargar elementos en la tabla
+        function cargarElementos() {
+            var tbody = $('#elementosTabla');
+            tbody.empty();
+            data.forEach(function(elemento) {
+                var row = '<tr>' +                            
+                            '<td>' + elemento.id + '</td>' +
+                            '<td><input type="checkbox" class="seleccionarElemento" data-id="' + elemento.id + '"></td>' +
+                            '<td>' + elemento.nombre + '</td>' +
+                            '<td>' + elemento.unidades + ' / ' + elemento.unidadesDisponibles+  '</td>' +
+                            '<td>' + elemento.valorUnitario + '</td>' +
+                            '<td>' + elemento.total + '</td>' +
+                            //'<td>' + elemento.unidadesDisponibles + '</td>' +                            
+                        '</tr>';
+                tbody.append(row);
+            });
+        }
+
+        // Cargar elementos al cargar la página
+        $(document).ready(function() {
+            cargarElementos();
+
+            $('#btnEnviarArchivo').click(function() {
+                var file = $('#fileInput')[0].files[0];
+                if (file) {
+                    enviarArchivoSharePoint(file);
+                } else {
+                    alert('Por favor, seleccione un archivo antes de enviar.');
+                }
+            });
+        });
+
+        // Manejar clic en el botón "Crear tabla con elementos seleccionados"
+        $('#btnCrearTabla').click(function() {
+            var elementosSeleccionados = [];
+            $('.seleccionarElemento:checked').each(function() {
+                var id = $(this).data('id');
+                var elemento = data.find(function(item) {
+                    return item.id == id;
+                });
+                elementosSeleccionados.push(elemento);
+            });
+            cargarTablaSeleccionados(elementosSeleccionados);
+        });
+
+        // Función para cargar la tabla de elementos seleccionados
+        function cargarTablaSeleccionados(elementosSeleccionados) {
+            var tbody = $('#elementosSeleccionados');
+            tbody.empty();
+            elementosSeleccionados.forEach(function(elemento) {
+                var row = '<tr>' +
+                            '<td>' + elemento.id + '</td>' +
+                            '<td>' + elemento.nombre + '</td>' +
+                            '<td><input id= "CantidadSolicitada'+elemento.id+'" type="number" class="form-control cantidadSeleccionada" Onblur="calcularTotal('+elemento.id+')" value=' + elemento.unidades + ' min="0" '+' max='+elemento.unidadesDisponibles+'>'+' / ' + elemento.unidadesDisponibles + '</td>' +
+                            '<td><input id= "ValorUnitarioSolicitado'+ elemento.id +'" type="number" class="form-control cantidadSeleccionada" Onblur="calcularTotal('+elemento.id+')" value=' + elemento.valorUnitario + ' min="0" '+' max='+elemento.valorUnitario+'>'+' / ' + elemento.valorUnitario + '</td>' +
+                            '<td><input id= "TotalElemento'+ elemento.id +'" type="number" class="form-control cantidadSeleccionada" readonly>'+ '</td>' +
+                            //'<td>' + elemento.unidadesDisponibles + '</td>' +
+                            
+                        '</tr>';
+                tbody.append(row);
+            });
+            $('#tablaSeleccionados').show();
+            $('#DivTablaElementos').hide();
+            $('#btnAtras').show();
+            $('#btnAceptar').show();
+            $('#ValorTotal').prop('readonly',true);
+        }
+
+        // Función para Calcular y mostrar los totales
+        function calcularTotal(idx){
+            $("#TotalElemento"+idx).val($("#CantidadSolicitada"+idx).val() * $("#ValorUnitarioSolicitado"+idx).val());
+            var sum = 0;
+            $("input[id^='TotalElemento']").each(function() {
+                sum += Number($(this).val());
+            });
+            $('#tablaTotales').show();
+            $("#SumaTotalSolicitado").val(sum);
+            if ((sum)==$("#ValorTotal").val()) {
+                $("#SumaTotalSolicitado").css("background-color","chartreuse");
+                $("#ValoresDistintos").hide();
+            } else {
+                $("#SumaTotalSolicitado").css("background-color","coral");
+                $("#ValoresDistintos").show();
+            }
+        }
+        // Manejar clic en el botón "ATRAS"
+        $('#btnAtras').click(function() {
+            $('#tablaSeleccionados').hide();
+            $('#tablaTotales').hide();
+            $('#DivTablaElementos').show();
+            $('#btnAtras').hide();
+            $('#btnAceptar').hide();
+            $('#ValorTotal').prop('readonly',false);
+        });
+
+        // Manejar clic en el botón "ACEPTAR"
+        $('#btnAceptar').click(function() {
+            if ( $("#SumaTotalSolicitado").css("background-color") == "chartreuse" ) {
+                alert("su factura ha sido enviada")
+            } else {
+                alert("Falta información por completar, por favor revise que todo este completo")
+            }
+             
+        });
+
+
+        // Función para enviar el archivo a SharePoint
+        function enviarArchivoSharePoint(file) {
+            var url = 'URL/_api/web/lists/getbytitle(\'BIBLIOTECA_DE_DOCUMENTOS\')/RootFolder/Files/Add(url=\'' + file.name + '\',overwrite=false)';
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: file,
+                processData: false,
+                headers: {
+                    'Accept': 'application/json;odata=verbose',
+                    'X-RequestDigest': $('#__REQUESTDIGEST').val()
+                },
+                success: function(data) {
+                    alert('Archivo enviado exitosamente a SharePoint.');
+                },
+                error: function(error) {
+                    console.error('Error al enviar archivo a SharePoint:', error);
+                    alert('Error al enviar archivo a SharePoint. Consulta la consola del navegador para más detalles.');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

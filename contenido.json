@@ -1,65 +1,82 @@
 [
-    { "nombre": "Gastos de Personal",
-      "unidades": 30,
-      "valorUnitario": 5,
+    { "id":1,
+      "nombre": "Gastos de Personal",
+      "unidades": 4,
+      "valorUnitario": 100,
       "moneda": "USD",
-      "total": 150,
-      "unidadesDisponibles" : 10
+      "total": 400,
+      "unidadesDisponibles" : 4
     },
     {
+      "id":2,
         "nombre": "Licencia office Basica",
-        "unidades": 10,
-        "valorUnitario": 5,
+        "unidades": 15,
+        "valorUnitario": 6,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 10
+        "total": 90,
+        "unidadesDisponibles" : 16
       },
 	  {
+      "id":3,
         "nombre": "Licencia office Standard",
-        "unidades": 10,
-        "valorUnitario": 5,
+        "unidades": 30,
+        "valorUnitario": 12.5,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 10
+        "total": 375,
+        "unidadesDisponibles" : 30
       },
 	  {
+      "id":4,
         "nombre": "Licencia office exchange online (plan 1)",
-        "unidades": 1,
+        "unidades": 4,
         "valorUnitario": 1,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 10
+        "total": 16,
+        "unidadesDisponibles" : 4
       },
 	  {
+      "id":5,
         "nombre": "Licencia office exchange online (plan 2)",
-        "unidades": 10,
-        "valorUnitario": 5,
+        "unidades": 2,
+        "valorUnitario": 3.5,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 10
+        "total": 7,
+        "unidadesDisponibles" : 2
       },
 	  {
+      "id":6,
         "nombre": "Licencia ",
         "unidades": 10,
         "valorUnitario": 5,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 10
+        "total": 50,
+        "unidadesDisponibles" : 12
       },
 	  {
+      "id":7,
         "nombre": "antivirus ",
-        "unidades": 10,
+        "unidades": 42,
         "valorUnitario": 5,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 10
+        "total": 250,
+        "unidadesDisponibles" : 50
       },
     {
+      "id":8,
         "nombre": "Licencias Power BI",
-        "unidades": 5,
-        "valorUnitario": 11,
+        "unidades": 1,
+        "valorUnitario": 10,
         "moneda": "USD",
-        "total": 150,
-        "unidadesDisponibles" : 3
+        "total": 10,
+        "unidadesDisponibles" : 2
       }
+      {
+        "id":9,
+          "nombre": "Soporte MAQCH",
+          "unidades": 1,
+          "valorUnitario": 2400000,
+          "moneda": "COP",
+          "total": 2400000,
+          "unidadesDisponibles" : 3
+        }
 ]

@@ -1,0 +1,24 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Titillium Web', sans-serif;
+}
+.green-header {
+    background-color: #003734;
+}
+#CantidadSolicitada {
+    width: 5em;
+    }
+#ValorUnitarioSolicitado{
+        width: 5em;
+    }
+#TotalElemento{
+        width: 5em;
+    }
+#tablaTotales{
+    padding-left: 955px;
+}
+#Encabezado{
+    color: white;
+}
