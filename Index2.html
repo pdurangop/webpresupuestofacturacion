@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preuspuesto y facturacion</title>
+    <title>Registro Factura</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Google Fonts - Titillium Web y Nunito Sans -->
@@ -18,7 +18,7 @@
                     <img src="../logo-superior.png" alt="Logo" style="max-width: 200px;">
                 </div>
                 <div class="col">
-                    <h1 id="Encabezado">Facturacion VS Presupuesto</h1>
+                    <h1 id="Encabezado">Registro Factura</h1>
                 </div>
             
         </header>
@@ -31,6 +31,10 @@
         <button id="btnEnviarArchivo" class="btn btn-primary mt-2">Enviar Archivo</button>
         <br><br>
         <div class="container d-flex align-items-center">
+            <p>Por seleccione el proveedor: </p>
+            <input id="proveedor" type="number" placeholder="proveedor" />
+            <p>Por favor Ingrese el número de factura: </p>
+            <input id="numeroFactura" type="number" placeholder="Número de factura" />
             <p>Por favor Ingrese el total del pago: </p>
             <input id="ValorTotal" type="number" placeholder="Valor total factura" />
           </div>
@@ -101,9 +105,9 @@
     <script>
         // JSON de ejemplo
         var data = [
-            {"id":1,"nombre":"Gastos de Personal","unidades":30,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
-            {"id":2,"nombre":"Licencia office Basica","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
-            {"id":3,"nombre":"Licencia office Standard","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":1,"nombre":"Gastos de Personal","unidades":4,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":4},
+            {"id":2,"nombre":"Licencia office Basica","unidades":5,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
+            {"id":3,"nombre":"Licencia office Standard","unidades":8,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
             {"id":4,"nombre":"Licencia office exchange online (plan 1)","unidades":1,"valorUnitario":1,"moneda":"USD","total":150,"unidadesDisponibles":10},
             {"id":5,"nombre":"Licencia office exchange online (plan 2)","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
             {"id":6,"nombre":"Licencia","unidades":10,"valorUnitario":5,"moneda":"USD","total":150,"unidadesDisponibles":10},
@@ -132,7 +136,6 @@
         // Cargar elementos al cargar la página
         $(document).ready(function() {
             cargarElementos();
-
             $('#btnEnviarArchivo').click(function() {
                 var file = $('#fileInput')[0].files[0];
                 if (file) {
@@ -153,10 +156,18 @@
                 });
                 elementosSeleccionados.push(elemento);
             });
-            cargarTablaSeleccionados(elementosSeleccionados);
+            if ($('#ValorTotal').val() > 0 && (elementosSeleccionados.length>0)) {
+                cargarTablaSeleccionados(elementosSeleccionados);  
+            } else {
+                if ($('#ValorTotal').val() <= 0 ) {
+                    alert("Por favor ingresar el valor total de la factura o debe ser mayor a cero");
+                } else {
+                    alert("Por favor seleccione al menos 1 gasto");
+                }
+            } 
         });
 
-        // Función para cargar la tabla de elementos seleccionados
+        // Función para llenar la tabla de elementos seleccionados
         function cargarTablaSeleccionados(elementosSeleccionados) {
             var tbody = $('#elementosSeleccionados');
             tbody.empty();

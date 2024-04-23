@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen Facturación</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts - Titillium Web y Nunito Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../estilos.css">
+    
+</head>
+<body>
+    <div class="container mt-3">
+        <header class="green-header d-flex align-items-center">
+                <div class="col">
+                    <img src="../logo-superior.png" alt="Logo" style="max-width: 200px;">
+                </div>
+                <div class="col">
+                    <h1 id="Encabezado">Resumen Presupuesto</h1>
+                </div>
+            
+        </header>
+    </div>
+    <div id="DivTablaResumen" class="container mt-3">
+        <table id="TablaResumen" class="table" Border>
+            <thead>
+                <tr class="sinBorde" ALIGN=CENTER>
+                    <th class="sinBorde"></th>
+                    <th class="sinBorde"></th>
+                    <th class="sinBorde" COLSPAN="5">ENERO</th>
+                    <th class="sinBorde" COLSPAN="5">FEBRERO</th>
+                    <th class="sinBorde" COLSPAN="5">MARZO</th>
+                    <th class="sinBorde" COLSPAN="5">ABRIL</th>
+                    <th class="sinBorde" COLSPAN="5">MAYO</th>
+                    <th class="sinBorde" COLSPAN="5">JUNIO</th>
+                    <th class="sinBorde" COLSPAN="5">JULIO</th>
+                    <th class="sinBorde" COLSPAN="5">AGOSTO</th>
+                    <th class="sinBorde" COLSPAN="5">SEPTIEMBRE</th>
+                    <th class="sinBorde" COLSPAN="5">OCTUBRE</th>
+                    <th class="sinBorde" COLSPAN="5">NOVIEMBRE</th>
+                    <th class="sinBorde" COLSPAN="5">DICIEMBRE</th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Gasto</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="bodyTablaResumen">
+                <!-- SE INSERTAN LAS FILAS DE LOS GASTOS -->
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        // Ruta del archivo JSON
+        
+        const rutaJSON = '../presupuestado.json';
+        
+        fetch(rutaJSON)
+            .then(response => response.json())
+            .then(data => {
+                llenarContenidoMeses(data);
+            })
+            .catch(error => console.error('Error al leer el archivo JSON:', error));
+        });
+
+        function llenarContenidoMeses(contenidoMeses) {
+            const meses = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+             "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+            const tbody = $('#bodyTablaResumen');
+            const gastosAgrupados = {};
+            // Agrupar los gastos por nombre o ID
+            contenidoMeses.forEach(function (cadaGasto) {
+                if (!gastosAgrupados[cadaGasto.Gasto]) {
+                    gastosAgrupados[cadaGasto.Gasto] = [];
+                }
+                gastosAgrupados[cadaGasto.Gasto].push(cadaGasto);
+            });
+            // Para cada gasto agrupado, crear una fila en la tabla
+            for (const nombreGasto in gastosAgrupados) {
+                let filaCreada = false;
+                const gastos = gastosAgrupados[nombreGasto];
+        
+                meses.forEach(function (mes) {
+                    const gastoEnMes = gastos.find(gasto => gasto.Mes.toUpperCase() === mes);
+                    if (gastoEnMes) {
+                        if (!filaCreada) {
+                            let row = `<tr>
+                                        <td>${gastoEnMes.id}</td>
+                                        <td>${gastoEnMes.Gasto}</td>`;
+                            filaCreada = true;
+
+                            // Llenar las columnas correspondientes para cada mes
+                            meses.forEach(function (mes) {
+                                const gastoEnMes = gastos.find(gasto => gasto.Mes.toUpperCase() === mes);
+                                if (gastoEnMes) {
+                                    row += `<td>${gastoEnMes.Solicitado}</td>
+                                            <td>${gastoEnMes.Disponible}</td>
+                                            <td>${gastoEnMes.Gastado}</td>
+                                            <td>${gastoEnMes.Presupuesto}</td>
+                                            <td id="balance">${((gastoEnMes.Gastado / gastoEnMes.Presupuesto) * 100).toFixed(1)} % </td>`;
+                                } else {
+                                    row += `<td></td><td></td><td></td><td></td><td></td>`;
+                                }
+                            });
+
+                            row += `</tr>`;
+                            tbody.append(row);
+                        }
+                    }
+                });
+            }
+        }
+        
+    </script>
+</body>
+</html>
