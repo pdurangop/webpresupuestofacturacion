@@ -122,7 +122,7 @@
                                             <td>${gastoEnMes.Disponible}</td>
                                             <td>${gastoEnMes.Gastado}</td>
                                             <td>${gastoEnMes.Presupuesto}</td>
-                                            <td id="balance">${((gastoEnMes.Gastado / gastoEnMes.Presupuesto) * 100).toFixed(1)} % </td>`;
+                                            <td id="balance">${((gastoEnMes.Gastado / gastoEnMes.Presupuesto) * 100).toFixed(1)}</td>`;
                                 } else {
                                     row += `<td></td><td></td><td></td><td></td><td></td>`;
                                 }
@@ -134,6 +134,18 @@
                     }
                 });
             }
+            let colorBalance = document.querySelectorAll("#balance");
+            console.log(colorBalance)
+
+            colorBalance.forEach(element => {
+                if (element.innerText > 100) {
+                    element.style.background ="coral"
+                    console.log(element.innerHTML)
+                } else {
+                    element.style.background ="chartreuse"
+                } 
+            });
+                            
         }
         
     </script>
