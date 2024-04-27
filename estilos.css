@@ -4,6 +4,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Titillium Web', sans-serif;
 }
+table {
+    border-collapse: collapse;
+    border: 3px solid black;
+  }
 .green-header {
     background-color: #003734;
 }
@@ -22,4 +26,3 @@ h1, h2, h3, h4, h5, h6 {
 #Encabezado{
     color: white;
 }
-td.sinBorde {border-style: none;}

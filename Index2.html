@@ -26,22 +26,32 @@
     <div class="container mt-5">
         <h2>Bienvenido</h2>
             <h2>Cargar Documento Soporte</h2>
-            <p>Por favor seleccione el documento soporte o factura para el gasto.</p>
-        <input type="file" id="fileInput" class="form-control-file">
-        <button id="btnEnviarArchivo" class="btn btn-primary mt-2">Enviar Archivo</button>
-        <br><br>
-        <div class="container d-flex align-items-center">
-            <p>Por seleccione el proveedor: </p>
-            <input id="proveedor" type="number" placeholder="proveedor" />
-            <p>Por favor Ingrese el número de factura: </p>
-            <input id="numeroFactura" type="number" placeholder="Número de factura" />
-            <p>Por favor Ingrese el total del pago: </p>
-            <input id="ValorTotal" type="number" placeholder="Valor total factura" />
-          </div>
-        <div id="DivTablaElementos">
+            <form>
+                <div class="form-group">
+                  <label for="labelSeleccionDcoumento">Por favor seleccione el documento soporte o factura para el gasto.</label>
+                  <input type="file" id="fileInput" class="form-control-file">
+                  <button id="btnEnviarArchivo" class="btn btn-primary mt-2">Enviar Archivo</button>
+                </div>
+            </form>
+        <form>
+            <div class="form-group">
+                <label>Por favor seleccione el proveedor: </label>
+                <input id="proveedor" type="number" placeholder="proveedor" />
+            </div>    
+            <div class="form-group">
+                <label>Por favor Ingrese el número de factura: </label>
+                <input id="numeroFactura" type="number" placeholder="Número de factura" />
+            </div>
+            <div class="form-group">
+                <label>Por favor Ingrese el total del pago: </label>
+                <input id="ValorTotal" type="number" placeholder="Valor total factura" />
+            </div>
+        </form>
+    </div>
+        <div id="DivTablaElementos" class="container mt-5">
             <h2>Tabla de Gastos</h2>
             <p>Por favor seleccione los elementos al cual pertenece el gasto.</p>
-            <table id="TablaElementos" class="table">
+            <table id="TablaElementos" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -59,10 +69,10 @@
             </table>
             <button id="btnCrearTabla" class="btn btn-primary">Generar Tabla con elementos seleccionados</button>
         </div>
-        
+        <div  class="container mt-5">
             <h2 class="mt-5">Tabla de Elementos Seleccionados</h2>
             <p>Confirmar la cantidad y valor unitario para elemento seleccionado.</p>
-            <table id="tablaSeleccionados" class="table" style="display:none;">
+            <table id="tablaSeleccionados" class="table table-striped" style="display:none;">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -77,25 +87,27 @@
                     <!-- Aquí se insertarán los elementos seleccionados EN la NUEVA TABLA -->
                 </tbody>
             </table>
-        
-        <table id="tablaTotales" class="table" style="display:none;">
-            <thead>
-                <tr>
-                    <th>Total</th>
-                    <!-- <th>&nbsp</th>
-                    <th>&nbsp</th>
-                    <th>&nbsp</th> -->
-                    <th><input type="text" id="SumaTotalSolicitado" readonly></th>
-                </tr>
-                <tr>
-                    <td id="ValoresDistintos" style="display: none">Por favor verificar los valores ingresados porque el total no coindicde con el valor de la factura</td>
-                </tr>
-            </thead>
-            
-        </table>
-        <button id="btnAtras" style="display:none">Atras</button>
-        <button id="btnAceptar" style="display:none">Aceptar</button>
-    </div>
+        </div>
+        <div  class="container mt-5">
+            <table id="tablaTotales" class="table" style="display:none;">
+                <thead>
+                    <tr>
+                        <th>Total</th>
+                        <!-- <th>&nbsp</th>
+                        <th>&nbsp</th>
+                        <th>&nbsp</th> -->
+                        <th><input type="text" id="SumaTotalSolicitado" readonly></th>
+                    </tr>
+                    <tr>
+                        <td id="ValoresDistintos" style="display: none">Por favor verificar los valores ingresados porque el total no coindicde con el valor de la factura</td>
+                    </tr>
+                </thead>    
+            </table>
+        </div>
+        <div class="container mt-5">
+            <button id="btnAtras" style="display:none">Atras</button>
+            <button id="btnAceptar" style="display:none">Aceptar</button>
+        </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -24,23 +24,22 @@
         </header>
     </div>
     <div id="DivTablaResumen" class="container mt-3">
-        <table id="TablaResumen" class="table" Border>
+        <table id="TablaResumen" class="table table-striped table-bordered table-hover">
             <thead>
-                <tr class="sinBorde" ALIGN=CENTER>
-                    <th class="sinBorde"></th>
-                    <th class="sinBorde"></th>
-                    <th class="sinBorde" COLSPAN="5">ENERO</th>
-                    <th class="sinBorde" COLSPAN="5">FEBRERO</th>
-                    <th class="sinBorde" COLSPAN="5">MARZO</th>
-                    <th class="sinBorde" COLSPAN="5">ABRIL</th>
-                    <th class="sinBorde" COLSPAN="5">MAYO</th>
-                    <th class="sinBorde" COLSPAN="5">JUNIO</th>
-                    <th class="sinBorde" COLSPAN="5">JULIO</th>
-                    <th class="sinBorde" COLSPAN="5">AGOSTO</th>
-                    <th class="sinBorde" COLSPAN="5">SEPTIEMBRE</th>
-                    <th class="sinBorde" COLSPAN="5">OCTUBRE</th>
-                    <th class="sinBorde" COLSPAN="5">NOVIEMBRE</th>
-                    <th class="sinBorde" COLSPAN="5">DICIEMBRE</th>
+                <tr class="thead-dark" ALIGN=CENTER>
+                    <th class="" COLSPAN="2"></th>
+                    <th class="" COLSPAN="5">ENERO</th>
+                    <th class="" COLSPAN="5">FEBRERO</th>
+                    <th class="" COLSPAN="5">MARZO</th>
+                    <th class="" COLSPAN="5">ABRIL</th>
+                    <th class="" COLSPAN="5">MAYO</th>
+                    <th class="" COLSPAN="5">JUNIO</th>
+                    <th class="" COLSPAN="5">JULIO</th>
+                    <th class="" COLSPAN="5">AGOSTO</th>
+                    <th class="" COLSPAN="5">SEPTIEMBRE</th>
+                    <th class="" COLSPAN="5">OCTUBRE</th>
+                    <th class="" COLSPAN="5">NOVIEMBRE</th>
+                    <th class="" COLSPAN="5">DICIEMBRE</th>
                 </tr>
                 <tr>
                     <th>ID</th>
@@ -110,8 +109,8 @@
                     if (gastoEnMes) {
                         if (!filaCreada) {
                             let row = `<tr>
-                                        <td>${gastoEnMes.id}</td>
-                                        <td>${gastoEnMes.Gasto}</td>`;
+                                        <th>${gastoEnMes.id}</th>
+                                        <th>${gastoEnMes.Gasto}</th>`;
                             filaCreada = true;
 
                             // Llenar las columnas correspondientes para cada mes
