@@ -24,18 +24,70 @@
             <h1>Presupuesto 2024 "SUBPROCESO"</h1>
         </div>
         <form>
-            <div class="form-group">
-                <label>Por favor ingrese el nombre del Gasto: </label>
-                <input id="nombreGasto" type="text" placeholder="Nombre del Gasto" />
-            </div>    
-            <div class="form-group">
-                <label>Por favor ingrese la cantidad: </label>
-                <input id="cantidadGasto" type="number" placeholder="Cantidad" />
+            <div class="form-row">
+              <div class="col-md-6 mb-3">
+                <label for="nombreGastoNuevo">Nombre del gasto:</label>
+                <input type="text" class="form-control" id="nombreGastoNuevo" placeholder="Nombre del Gasto" value="" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationDefault02">Cantidad del gasto:</label>
+                <input type="number" class="form-control" id="cantidadGastoNuevo" placeholder="Cantidad Gasto" value="" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationDefault02">Valor Uniario del gasto:</label>
+                <input type="number" class="form-control" id="valorUnitarioNuevo" placeholder="Valor Unitario Gasto" value="" required>
+              </div>
             </div>
-            <div class="form-group">
-                <label>Por favor ingrese el valor unitario: </label>
-                <input id="valorUnitario" type="number" placeholder="Valor Unitario" />
+            <fieldset disabled>
+              <div class="form-group">
+                <label for="presupuestoTextInput">Presupuesto</label>
+                <input type="text" id="presupuestoInput" class="form-control" placeholder="Presupuesto">
+              </div>
+            </fieldset>
+              <div class="row">
+                <div class="col-md-2 offset-md-10">              
+                  <button class="btn btn-primary" type="aplicarTodos">Aplicar a todos</button>
+                </div>
+              </div>
+            <div class="row">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th scope="col">Mes</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Valor Unitario</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Enero</th>
+                    <td>aa</td>
+                    <td>bb</td>
+                    <td>cc</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Febrero</th>
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Marzo</th>
+                    <td colspan="1">qwerty</td>
+                    <td>tyu</td>
+                    <td>123654</td>
+                  </tr>
+                </tbody>
+              </table>
+
             </div>
+
+            <div class="form-group">
+                <label for="comentarioTextarea">Comentario</label>
+                <textarea class="form-control" id="comentarioText" rows="3"></textarea>
+              </div>
+            <button class="btn btn-primary" type="submit">Enviar</button>
         </form>
     </div>
 </body>

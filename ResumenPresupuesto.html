@@ -138,10 +138,12 @@
 
             colorBalance.forEach(element => {
                 if (element.innerText > 100) {
-                    element.style.background ="coral"
-                    console.log(element.innerHTML)
+                    //element.style.background ="coral"
+                    element.classList.add("table-danger")
+                    //console.log(element.innerHTML)
                 } else {
-                    element.style.background ="chartreuse"
+                    //element.style.background ="chartreuse"
+                    element.classList.add("table-success")
                 } 
             });
                             

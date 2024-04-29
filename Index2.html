@@ -28,23 +28,25 @@
             <h2>Cargar Documento Soporte</h2>
             <form>
                 <div class="form-group">
-                  <label for="labelSeleccionDcoumento">Por favor seleccione el documento soporte o factura para el gasto.</label>
-                  <input type="file" id="fileInput" class="form-control-file">
+                  <label for="btnEnviarArchivo">Por favor seleccione el documento soporte o factura para el gasto.</label>
+                  <input type="file" title="Seleccionar Archivo" id="fileInput" class="form-control-file" placeholder="Cargar Archivo">
                   <button id="btnEnviarArchivo" class="btn btn-primary mt-2">Enviar Archivo</button>
                 </div>
             </form>
         <form>
-            <div class="form-group">
-                <label>Por favor seleccione el proveedor: </label>
-                <input id="proveedor" type="number" placeholder="proveedor" />
-            </div>    
-            <div class="form-group">
-                <label>Por favor Ingrese el número de factura: </label>
-                <input id="numeroFactura" type="number" placeholder="Número de factura" />
-            </div>
-            <div class="form-group">
-                <label>Por favor Ingrese el total del pago: </label>
-                <input id="ValorTotal" type="number" placeholder="Valor total factura" />
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <label>Por favor seleccione el proveedor: </label>
+                    <input id="proveedor" type="number" placeholder="proveedor" >
+                </div>    
+                <div class="col-md-4 mb-3">
+                    <label>Por favor Ingrese el número de factura: </label>
+                    <input id="numeroFactura" type="number" placeholder="Número de factura" required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label>Por favor Ingrese el total del pago: </label>
+                    <input id="ValorTotal" type="number" placeholder="Valor total factura" required>
+                </div>
             </div>
         </form>
     </div>
@@ -92,14 +94,11 @@
             <table id="tablaTotales" class="table" style="display:none;">
                 <thead>
                     <tr>
-                        <th>Total</th>
-                        <!-- <th>&nbsp</th>
-                        <th>&nbsp</th>
-                        <th>&nbsp</th> -->
+                        <th style="padding-right: 700px;">Total</th>
                         <th><input type="text" id="SumaTotalSolicitado" readonly></th>
                     </tr>
                     <tr>
-                        <td id="ValoresDistintos" style="display: none">Por favor verificar los valores ingresados porque el total no coindicde con el valor de la factura</td>
+                        <td id="ValoresDistintos" style="display: none">Por favor verificar los valores ingresados porque el total no coinci    de con el valor de la factura</td>
                     </tr>
                 </thead>    
             </table>
