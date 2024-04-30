@@ -25,17 +25,21 @@
         </div>
         <form>
             <div class="form-row">
-              <div class="col-md-6 mb-3">
+              <div class="col-md-4 mb-3">
                 <label for="nombreGastoNuevo">Nombre del gasto:</label>
-                <input type="text" class="form-control" id="nombreGastoNuevo" placeholder="Nombre del Gasto" value="" required>
+                <input type="text" class="form-control" id="nombreGastoNuevo" placeholder="Nombre del Gasto" required>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationDefault02">Cantidad del gasto:</label>
-                <input type="number" class="form-control" id="cantidadGastoNuevo" placeholder="Cantidad Gasto" value="" required>
+                <input type="number" class="form-control" id="cantidadGastoNuevo" placeholder="Cantidad Gasto" required>
               </div>
               <div class="col-md-3 mb-3">
                 <label for="validationDefault02">Valor Uniario del gasto:</label>
-                <input type="number" class="form-control" id="valorUnitarioNuevo" placeholder="Valor Unitario Gasto" value="" required>
+                <input type="number" class="form-control" id="valorUnitarioNuevo" placeholder="Valor Unitario Gasto" required>
+              </div>
+              <div class="col-md-2 mb-3">
+                <label for="validationDefault02">Total del gasto:</label>
+                <input type="number" class="form-control" id="totalGastoNuevo" placeholder="Valor Total Gasto" required disabled>
               </div>
             </div>
             <fieldset disabled>
@@ -44,51 +48,123 @@
                 <input type="text" id="presupuestoInput" class="form-control" placeholder="Presupuesto">
               </div>
             </fieldset>
+        </form>
               <div class="row">
-                <div class="col-md-2 offset-md-10">              
-                  <button class="btn btn-primary" type="aplicarTodos">Aplicar a todos</button>
+                <div class="col-md-3 offset-md-1">              
+                  <button class="btn btn-primary" type="aplicarTodos" id="btnAplicarTodos">Aplicar a todos los meses</button>
+                </div>
+                <div class="col-md-3 offset-md-4">              
+                  <button class="btn btn-secondary" type="limpiarMeses" id="btnLimpiarMeses">Borrar Selección meses</button>
                 </div>
               </div>
+              <br>
             <div class="row">
-              <table class="table table-sm">
+              <table id="tablaMeses" class="table table-sm table-striped table-bordered table-hover ">
                 <thead>
                   <tr>
+                    <th scope="col">Selección</th>
                     <th scope="col">Mes</th>
                     <th scope="col">Cantidad</th>
                     <th scope="col">Valor Unitario</th>
                     <th scope="col">Total</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="tbody">
                   <tr>
+                    <th><input type="checkbox" name="check" id="checkEnero"></th>
                     <th scope="row">Enero</th>
-                    <td>aa</td>
-                    <td>bb</td>
-                    <td>cc</td>
+                    <td><input type="number" name="cantidad" id="cantidadEnero" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorEnero" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalEnero" disabled value="" class="addGastoTotal"></td>
                   </tr>
                   <tr>
+                    <th><input type="checkbox" name="check" id="checkFebrero"></th>
                     <th scope="row">Febrero</th>
-                    <td>a</td>
-                    <td>b</td>
-                    <td>c</td>
+                    <td><input type="number" name="cantidad" id="cantidadFebrero" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorFebrero" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalFebrero" disabled value="" class="addGastoTotal"></td>
                   </tr>
                   <tr>
+                    <th><input type="checkbox" name="check" id="checkMarzo"></th>
                     <th scope="row">Marzo</th>
-                    <td colspan="1">qwerty</td>
-                    <td>tyu</td>
-                    <td>123654</td>
+                    <td><input type="number" name="cantidad" id="cantidadMarzo" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorMarzo" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalMarzo" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkAbril"></th>
+                    <th scope="row">Abril</th>
+                    <td><input type="number" name="cantidad" id="cantidadAbril" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorAbril" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalAbril" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkMayo"></th>
+                    <th scope="row">Mayo</th>
+                    <td><input type="number" name="cantidad" id="cantidadMayo" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valor" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="total" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkJunio"></th>
+                    <th scope="row">Junio</th>
+                    <td><input type="number" name="cantidad" id="cantidadJunio" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorJunio" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalJunio" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkJulio"></th>
+                    <th scope="row">Julio</th>
+                    <td><input type="number" name="cantidad" id="cantidadJulio" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorJunioJulio" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalJunioJulio" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkAgosto"></th>
+                    <th scope="row">Agosto</th>
+                    <td><input type="number" name="cantidad" id="cantidadAgosto" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorAgosto" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalAgosto" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkSeptiembre"></th>
+                    <th scope="row">Septiembre</th>
+                    <td><input type="number" name="cantidad" id="cantidadSeptiembre" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorSeptiembre" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalSeptiembre" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkOctubre"></th>
+                    <th scope="row">Octubre</th>
+                    <td><input type="number" name="cantidad" id="cantidadOctubre" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorOctubre" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalOctubre" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkNoviembre"></th>
+                    <th scope="row">Noviembre</th>
+                    <td><input type="number" name="cantidad" id="cantidadNoviembre" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorNoviembre" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalNoviembre" disabled value="" class="addGastoTotal"></td>
+                  </tr>
+                  <tr>
+                    <th><input type="checkbox" name="check" id="checkDiciembre"></th>
+                    <th scope="row">Diciembre</th>
+                    <td><input type="number" name="cantidad" id="cantidadDiciembre" class="addGastoCantidad"></td>
+                    <td><input type="number" name="valor" id="valorDiciembre" class="addGastoValor"></td>
+                    <td><input type="number" name="total" id="totalDiciembre" disabled value="" class="addGastoTotal"></td>
                   </tr>
                 </tbody>
               </table>
 
             </div>
-
+          <form>
             <div class="form-group">
                 <label for="comentarioTextarea">Comentario</label>
                 <textarea class="form-control" id="comentarioText" rows="3"></textarea>
               </div>
             <button class="btn btn-primary" type="submit">Enviar</button>
-        </form>
+          </form>
     </div>
 </body>
 <!-- jQuery -->
@@ -96,4 +172,44 @@
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+  
+  const btnApllyAll = document.getElementById('btnAplicarTodos');
+  btnApllyAll.addEventListener('click', () => {   
+    let casillasCheck = document.getElementsByName('check')    
+    casillasCheck.forEach(element => {
+      element.checked = true;
+    });
+    let cantidadValor = document.getElementById("cantidadGastoNuevo").value;
+    let inputCantidad = document.getElementsByName('cantidad');
+    inputCantidad.forEach(element => {
+      element.value= cantidadValor;
+    });
+    let valorUnitario = document.getElementById("valorUnitarioNuevo").value;
+    let inputValorUnitario = document.getElementsByName("valor");
+    inputValorUnitario.forEach(element => {
+      element.value = valorUnitario;
+    });
+  })
+  const btnReset = document.getElementById("btnLimpiarMeses")
+  btnReset.onclick = (event) => {
+    let contenidoTabla = document.getElementById("tbody")
+
+    let casillasCheck = document.getElementsByName('check')    
+    casillasCheck.forEach(element => {
+      element.checked = false;
+    });
+    
+    let inputCantidad = document.getElementsByName('cantidad');
+    inputCantidad.forEach(element => {
+      element.value= "";
+    });
+    
+    let inputValorUnitario = document.getElementsByName("valor");
+    inputValorUnitario.forEach(element => {
+      element.value = "";
+    });
+  }
+  
+</script>
 </html>
