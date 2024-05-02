@@ -163,7 +163,7 @@
                 <label for="comentarioTextarea">Comentario</label>
                 <textarea class="form-control" id="comentarioText" rows="3"></textarea>
               </div>
-            <button class="btn btn-primary" type="submit">Enviar</button>
+            <button class="btn btn-primary" type="submit" id="btnEnviar">Enviar</button>
           </form>
     </div>
 </body>
@@ -173,7 +173,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
-  
+  // Poner todos los checks y llenar los meses con los valores
   const btnApllyAll = document.getElementById('btnAplicarTodos');
   btnApllyAll.addEventListener('click', () => {   
     let casillasCheck = document.getElementsByName('check')    
@@ -190,7 +190,13 @@
     inputValorUnitario.forEach(element => {
       element.value = valorUnitario;
     });
+    let ValorTotal = document.getElementById("totalGastoNuevo").value;
+    let inputValorTotal = document.getElementsByName("total")
+    inputValorTotal.forEach(element => {
+      element.value = ValorTotal;
+    });
   })
+  // Resetear valores de los checks y meses a vacio
   const btnReset = document.getElementById("btnLimpiarMeses")
   btnReset.onclick = (event) => {
     let contenidoTabla = document.getElementById("tbody")
@@ -209,7 +215,42 @@
     inputValorUnitario.forEach(element => {
       element.value = "";
     });
+
+    let inputValorTotal = document.getElementsByName("total");
+    inputValorTotal.forEach(element => {
+      element.value = "";
+    });
   }
+  // Calculo del Total del nuevo Gasto
+  const valCantidadGasto = document.querySelector('#cantidadGastoNuevo');
+  const valValorUni = document.querySelector('#valorUnitarioNuevo');
+  const valTotalGasto = document.querySelector('#totalGastoNuevo');
+  valCantidadGasto.addEventListener("input", actualizaValor);
+  valValorUni.addEventListener("input", actualizaValor2);
+  function actualizaValor(e) {
+    let sum = 0 ;
+    sum  = valValorUni.value *  e.target.value ;
+    valTotalGasto.value = sum;
+  }
+  function actualizaValor2(e) {
+    let sum = 0;
+    sum  = valCantidadGasto.value *  e.target.value ;
+    valTotalGasto.value = sum;
+  }
+
+  // boton enviar para construir json
+  let varBtnEnviar = document.getElementById("btnEnviar");
   
+  varBtnEnviar.addEventListener('click', () => {
+    let varComent = document.getElementById('comentarioText').value
+    let varNombreGasto = document.getElementById('nombreGastoNuevo').value
+    console.log(valCantidadGasto.value, 'cantidad');
+    console.log(valValorUni.value, "valorunitario");
+    console.log(valTotalGasto.value, 'valortotal');
+    console.log(varComent,"comentario");
+    console.log(varNombreGasto, 'nombreGasto');
+    alert(varComent)
+  });
+
 </script>
 </html>
