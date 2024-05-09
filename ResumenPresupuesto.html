@@ -24,39 +24,32 @@
         </header>
     </div>
     <div id="DivTablaResumen" class="container mt-3">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Enero')">Enero</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Febrero')">Febrero</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Marzo')">Marzo</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Abril')">Abril</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Mayo')">Mayo</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Junio')">Junio</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Julio')">Julio</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Agosto')">Agosto</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Septiembre')">Septiembre</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Octubre')">Octubre</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Noviembre')">Noviembre</a></li>
+              <li class="page-item"><a class="page-link" href="#" onclick="mostrarMes('Diciembre')">Diciembre</a></li>
+            </ul>
+        </nav>
         <table id="TablaResumen" class="table table-striped table-bordered table-hover">
             <thead>
                 <tr class="thead-dark" ALIGN=CENTER>
-                    <th class="" COLSPAN="2"></th>
-                    <th class="" COLSPAN="5">ENERO</th>
-                    <th class="" COLSPAN="5">FEBRERO</th>
-                    <th class="" COLSPAN="5">MARZO</th>
-                    <th class="" COLSPAN="5">ABRIL</th>
-                    <th class="" COLSPAN="5">MAYO</th>
-                    <th class="" COLSPAN="5">JUNIO</th>
-                    <th class="" COLSPAN="5">JULIO</th>
-                    <th class="" COLSPAN="5">AGOSTO</th>
-                    <th class="" COLSPAN="5">SEPTIEMBRE</th>
-                    <th class="" COLSPAN="5">OCTUBRE</th>
-                    <th class="" COLSPAN="5">NOVIEMBRE</th>
-                    <th class="" COLSPAN="5">DICIEMBRE</th>
+                    <th class="" COLSPAN="2">Mes</th>
+                    <th class="" COLSPAN="5" id="mesSeleccionado">ENERO</th>
                 </tr>
                 <tr>
                     <th>ID</th>
                     <th>Gasto</th>
                     <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    <th>Solicitado</th><th>Disponible</th><th>Gastado</th><th>Presupuestado</th><th>Balance</th>
-                    
                 </tr>
             </thead>
             <tbody id="bodyTablaResumen">
@@ -74,80 +67,71 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
+        let data; // Variable global para almacenar los datos
+
         document.addEventListener("DOMContentLoaded", function() {
-        // Ruta del archivo JSON
-        
-        const rutaJSON = '../presupuestado.json';
-        
-        fetch(rutaJSON)
-            .then(response => response.json())
-            .then(data => {
-                llenarContenidoMeses(data);
-            })
-            .catch(error => console.error('Error al leer el archivo JSON:', error));
+            const rutaJSON = '../presupuestado.json';
+            fetch(rutaJSON)
+                .then(response => response.json())
+                .then(jsonData => {
+                    data = jsonData; // Almacenar los datos en la variable global
+                    llenarTabla(); // Llenar la tabla inicialmente con los datos de Enero
+                })
+                .catch(error => console.error('Error al leer el archivo JSON:', error));
         });
 
-        function llenarContenidoMeses(contenidoMeses) {
-            const meses = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
-             "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
+        function mostrarMes(mes) {
+            // Actualizar el encabezado con el mes seleccionado
+            document.getElementById('mesSeleccionado').innerText = mes;
+            // Llamar a la función para llenar la tabla con los datos del mes seleccionado
+            llenarTabla();
+        }
+
+        function llenarTabla() {
             const tbody = $('#bodyTablaResumen');
+            const mesSeleccionado = document.getElementById('mesSeleccionado').innerText;
             const gastosAgrupados = {};
             // Agrupar los gastos por nombre o ID
-            contenidoMeses.forEach(function (cadaGasto) {
+            data.forEach(function (cadaGasto) {
                 if (!gastosAgrupados[cadaGasto.Gasto]) {
                     gastosAgrupados[cadaGasto.Gasto] = [];
                 }
                 gastosAgrupados[cadaGasto.Gasto].push(cadaGasto);
             });
+            // Limpiar el cuerpo de la tabla
+            tbody.empty();
             // Para cada gasto agrupado, crear una fila en la tabla
             for (const nombreGasto in gastosAgrupados) {
-                let filaCreada = false;
                 const gastos = gastosAgrupados[nombreGasto];
-        
-                meses.forEach(function (mes) {
-                    const gastoEnMes = gastos.find(gasto => gasto.Mes.toUpperCase() === mes);
-                    if (gastoEnMes) {
-                        if (!filaCreada) {
-                            let row = `<tr>
-                                        <th>${gastoEnMes.id}</th>
-                                        <th>${gastoEnMes.Gasto}</th>`;
-                            filaCreada = true;
-
-                            // Llenar las columnas correspondientes para cada mes
-                            meses.forEach(function (mes) {
-                                const gastoEnMes = gastos.find(gasto => gasto.Mes.toUpperCase() === mes);
-                                if (gastoEnMes) {
-                                    row += `<td>${gastoEnMes.Solicitado}</td>
-                                            <td>${gastoEnMes.Disponible}</td>
-                                            <td>${gastoEnMes.Gastado}</td>
-                                            <td>${gastoEnMes.Presupuesto}</td>
-                                            <td id="balance">${((gastoEnMes.Gastado / gastoEnMes.Presupuesto) * 100).toFixed(1)}</td>`;
-                                } else {
-                                    row += `<td></td><td></td><td></td><td></td><td></td>`;
-                                }
-                            });
-
-                            row += `</tr>`;
-                            tbody.append(row);
-                        }
+                let row = `<tr>
+                                <td>${gastos[0].id}</td>
+                                <td>${gastos[0].Gasto}</td>`;
+                // Llenar las columnas correspondientes para el mes seleccionado
+                gastos.forEach(function (gasto) {
+                    if (gasto.Mes.toUpperCase() === mesSeleccionado.toUpperCase()) {
+                        row += `<td>${gasto.Solicitado}</td>
+                                <td>${gasto.Disponible}</td>
+                                <td>${gasto.Gastado}</td>
+                                <td>${gasto.Presupuesto}</td>
+                                <td id="balance">${((gasto.Gastado / gasto.Presupuesto) * 100).toFixed(1)}</td>`;
                     }
                 });
+                row += `</tr>`;
+                tbody.append(row);
             }
-            let colorBalance = document.querySelectorAll("#balance");
-            console.log(colorBalance)
+            colorearBalance(); // Llamar a la función para colorear el balance
+        }
 
+        function colorearBalance() {
+            let colorBalance = document.querySelectorAll("#balance");
             colorBalance.forEach(element => {
                 if (element.innerText > 100) {
-                    //element.style.background ="coral"
-                    element.classList.add("table-danger")
-                    //console.log(element.innerHTML)
+                    element.classList.add("table-danger");
                 } else {
-                    //element.style.background ="chartreuse"
-                    element.classList.add("table-success")
+                    element.classList.add("table-success");
                 } 
-            });           
+            });
         }
-        
     </script>
 </body>
 </html>

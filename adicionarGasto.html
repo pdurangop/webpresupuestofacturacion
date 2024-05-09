@@ -238,25 +238,33 @@
     valTotalGasto.value = sum;
   }
 
+  //llenar valores de cada mes si estan con la selección
+  let varChecks = document.getElementsByName("check")
+
+  varChecks.addEventListener('click', () => 
+    varChecks.forEach(element => {
+      
+    })
+  )
+
+
   // boton enviar para construir json
   let varBtnEnviar = document.getElementById("btnEnviar");
   
   varBtnEnviar.addEventListener('click', () => {
     let varComent = document.getElementById('comentarioText').value
     let varNombreGasto = document.getElementById('nombreGastoNuevo').value
-    console.log(valCantidadGasto.value, 'cantidad');
-    console.log(valValorUni.value, "valorunitario");
-    console.log(valTotalGasto.value, 'valortotal');
-    console.log(varComent,"comentario");
-    console.log(varNombreGasto, 'nombreGasto');
     const obj = {
-      "nombre": "Gastos de Personal",
-	    "Cantidad": 30,
-	    "valorUnitario": 5,
-	    "Comentario": "USD",
-	    "total": 150
+      "nombre": varNombreGasto,
+	    "Cantidad": valCantidadGasto.value,
+	    "valorUnitario": valValorUni.value,
+	    "Comentario": varComent,
+	    "total": valTotalGasto.value
     }
-    alert(varComent)
+    console.log(obj)
+    const arcjson = JSON.stringify(obj)
+    console.log(arcjson)
+    //alert(obj.nombre)
   });
 
 </script>
