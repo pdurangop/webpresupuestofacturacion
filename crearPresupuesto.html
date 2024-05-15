@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creación Presupuesto</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts - Titillium Web y Nunito Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../estilos.css">
+</head>
+<body>
+    <div class="container mt-3">
+        <header class="green-header d-flex align-items-center">
+                <div class="col">
+                    <img src="../logo-superior.png" alt="Logo" style="max-width: 200px;">
+                </div>
+                <div class="col">
+                    <h1 id="Encabezado">Crear Presupuesto</h1>
+                </div>
+            
+        </header>
+    </div>
+    <div class="container text-center">
+        <div class="row container mt-3">
+            <div class="col container mt-3">
+                <button id="btnCargarPresupuesto" type="button" class="btn btn-outline-secondary">
+                    Cargar Presupuesto Anterior
+                </button>
+            </div>
+            <div class="col container mt-3">
+                <button id="btnAgregarGasto" type="button" class="btn btn-outline-primary">
+                    Agregar Gasto
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container text-center">
+        <div class="row container mt-3">
+            <div class="col container mt-3">
+                <table id="listaGastosPresupuestos" class="table table-sm table-striped table-bordered table-hover" >
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Cantidad Solicitada</th>
+                            <th>Valor Unitario</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        
+                    </thead>
+                    
+                    <tbody id="elementosGastos">
+                        <tr>
+                            <td>Edit</td>
+                            <td>1</td>
+                            <td>Licencias Office 365</td>
+                            <td>5</td>
+                            <td>12.5</td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            </td>
+                            <td>62.5</td>
+                            <td>Delete</td>
+                        </tr>
+                        <!-- Aquí se insertarán los elementos -->
+                    </tbody>
+                </table>
+            
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        
+    </script>
+</body>
+</html>
